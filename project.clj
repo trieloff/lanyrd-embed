@@ -10,7 +10,7 @@
   :cljsbuild {
     :builds [{:id "server-prod"
               :source-paths ["src/cljs"]
-              :compiler {:main stackoverflow-embed.core
+              :compiler {:main lanyrd-embed.core
                          :output-to "main.js"
                          :language-in  :ecmascript5
                          :language-out :ecmascript5
@@ -19,9 +19,10 @@
                          :hashbang false
                          :optimizations :simple ;; notice this!
                          :target :nodejs }}
+
              {:id "server-test"
               :source-paths ["src/cljs" "src/test/cljs"]
-              :compiler {:main stackoverflow-embed.test-core
+              :compiler {:main lanyrd-embed.test-core
                          :output-to "tests.js"
                          :hashbang false
                          :optimizations :simple ;; notice this!
