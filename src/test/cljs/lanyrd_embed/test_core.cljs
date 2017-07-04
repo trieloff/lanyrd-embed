@@ -29,9 +29,16 @@
                    (identity %)))
         (p/catch #()))))
 
+(deftest test-parse-schema
+  (async done
+    (-> (c/schema-data "http://lanyrd.com/2017/jeffconf/")
+        (p/then #((is (= (:name %) "JeffConf"))
+                   (done)
+                   (identity %)))
+        (p/catch #()))))
+
 (enable-console-print!)
 (cljs.test/run-tests)
-
 
 ;; http://getschema.org/microdataextractor?url=http%3A%2F%2Flanyrd.com%2F2017%2Fjupytercon%2F&out=json
 ;; http://lanyrd.com/2017/strange-loop/strange-loop.ics
