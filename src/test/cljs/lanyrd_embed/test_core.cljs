@@ -64,5 +64,17 @@
                 (identity %)))
              #())))
 
+
+(deftest test-collect-all
+  (is (< 0 (count (env "BING_MAPS_KEY"))) "BING_MAPS_KEY environment variable must be set. Get your key at https://www.bingmapsportal.com/")
+  (async done
+    (p/catch (p/then (c/collect-data "http://lanyrd.com/2017/strange-loop/" (env "BING_MAPS_KEY"))
+                     #((is (= (:locality %) "St Louis"))
+                        (is (= (:summary %) "Strange Loop 2017"))
+                        (is (= (:startDate %) "Sept. 28, 2017"))
+                        (done)
+                        (identity %)))
+             #())))
+
 (enable-console-print!)
 (cljs.test/run-tests)

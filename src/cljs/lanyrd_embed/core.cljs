@@ -47,7 +47,7 @@
   (js->clj (js/JSON.parse (:body response)) :keywordize-keys keywordize))
 
 (defn decode-json-rdf-body [response]
-  (trace (decode-body response false))
+  (debug (decode-body response false))
   (apply merge (map (fn [[key val] pair] {(keyword (s/replace (s/replace key #".*#" "") #".*/" ""))
                                           (get (first val) "value")})
         (val (first (decode-body response false))))))
@@ -97,6 +97,12 @@
     (do
       (debug "embedding" url))
     (oembed-error url)))
+
+(defn collect-data [url key]
+  (p/map
+    (partial apply merge)
+    (p/all [(time-and-loc url key)
+           (schema-data url)])))
 
 (defn oembed-error [url]
   (error "Invalid Lanyrd event" url)
