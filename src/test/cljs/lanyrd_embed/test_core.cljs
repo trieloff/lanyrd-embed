@@ -2,7 +2,8 @@
   (:require [cljs.test :refer-macros [deftest is testing run-tests async]]
             [promesa.core :as p]
             [cljs.nodejs :as node]
-            [lanyrd-embed.core :as c]))
+            [lanyrd-embed.core :as c]
+            [clojure.string :as s]))
 
 (defn env
   "Returns the value of the environment variable k,
@@ -29,7 +30,7 @@
 
 (deftest test-parse-ical
   (async done
-    (-> (c/ical-data "http://lanyrd.com/2017/strange-loop/strange-loop.ics")
+    (-> (c/ical-data "http://lanyrd.com/2017/strange-loop/")
         (p/then #((is (= (:summary %) "Strange Loop 2017"))
                    (done)
                    (identity %)))
@@ -52,9 +53,16 @@
                    (identity %)))
         (p/catch #()))))
 
+
+(deftest test-time-and-loc
+  (is (< 0 (count (env "BING_MAPS_KEY"))) "BING_MAPS_KEY environment variable must be set. Get your key at https://www.bingmapsportal.com/")
+  (async done
+    (p/catch (p/then (c/time-and-loc "http://lanyrd.com/2017/strange-loop/" (env "BING_MAPS_KEY"))
+             #((is (= (:locality %) "St Louis"))
+                (is (= (:summary %) "Strange Loop 2017"))
+                (done)
+                (identity %)))
+             #())))
+
 (enable-console-print!)
 (cljs.test/run-tests)
-
-;; http://getschema.org/microdataextractor?url=http%3A%2F%2Flanyrd.com%2F2017%2Fjupytercon%2F&out=json
-;; http://lanyrd.com/2017/strange-loop/strange-loop.ics
-;; GET http://dev.virtualearth.net/REST/v1/Locations/47.9949575609,7.85275154418?o=json&includeEntityTypes=PopulatedPlace&includeNeighborhood=1&key=…

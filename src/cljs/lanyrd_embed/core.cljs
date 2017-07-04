@@ -32,7 +32,7 @@
         mapped (reduce #(assoc %1
                           (keyword (s/lower-case (s/replace-first (first %2) #";.*" "")))
                           (s/replace (s/replace (last %2) #"\\n" "\n") #"\\," ",")) {} pairs)]
-    (debug "pairs" pairs)
+    (trace "pairs" pairs)
     (identity mapped)))
 
 (defn ical-data [url]
@@ -47,7 +47,7 @@
   (js->clj (js/JSON.parse (:body response)) :keywordize-keys keywordize))
 
 (defn decode-json-rdf-body [response]
-  (debug (decode-body response false))
+  (trace (decode-body response false))
   (apply merge (map (fn [[key val] pair] {(keyword (s/replace (s/replace key #".*#" "") #".*/" ""))
                                           (get (first val) "value")})
         (val (first (decode-body response false))))))
@@ -59,20 +59,39 @@
       (p/catch #(error % "Error retrieving microdata"))))
 
 (defn decode-address [response]
-  (debug (decode-body response true))
-  (-> (decode-body response true)
-      :resourceSets
-      first
-      :resources
-      first
-      :address))
+  (trace "Decoding address" response)
+  (let [decoded (-> (decode-body response true)
+            :resourceSets
+            first
+            :resources
+            first
+            :address)]
+    (debug "Decoded" decoded)
+    (p/promise decoded)))
 
-(defn location-data [lat lon key]
+(defn get-loc-meta [key ical-loc]
+  (println ical-loc)
+  (p/map
+    (partial merge ical-loc)
+    (location-data (:lat ical-loc) (:lon ical-loc) key)))
+
+(defn expand-loc [ical]
+  (assoc ical
+    :lat (first (s/split (:geo ical) #";"))
+    :lon (last (s/split (:geo ical) #";"))))
+
+(defn time-and-loc [url key]
+  (p/chain (ical-data url)
+           expand-loc
+           (partial get-loc-meta key)))
+
+
+(defn location-data
+  ([lat lon key]
   (debug "Getting location data for " lat lon)
   (-> (http/get client (str "http://dev.virtualearth.net/REST/v1/Locations/" lat "," lon)
                 {:query-params {:key key :o "json" :includeEntityTypes "PopulatedPlace"}})
-      (p/then decode-address)
-      (p/catch #(error % "Error retrieving location"))))
+      (p/then decode-address))))
 
 (defn embed-lanyrd [url]
   (if (is-lanyrd-url url)
