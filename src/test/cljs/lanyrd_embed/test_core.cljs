@@ -7,6 +7,10 @@
   (is (c/is-lanyrd-url "http://lanyrd.com/2017/smashingconf-freiburg/"))
   (is (not (c/is-lanyrd-url "http://example.com/2017/smashingconf-freiburg/"))))
 
+(deftest test-meta
+  (is (= 2017 (:year (c/lanyrd-url-meta "http://lanyrd.com/2017/smashingconf-freiburg/"))))
+  (is (= "smashingconf-freiburg" (:id (c/lanyrd-url-meta "http://lanyrd.com/2017/smashingconf-freiburg/")))))
+
 (deftest test-numbers
   (is (= 1 1)))
 

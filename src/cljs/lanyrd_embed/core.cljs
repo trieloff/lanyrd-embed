@@ -15,6 +15,12 @@
 (defn is-lanyrd-url [url]
   (not (nil? (re-matches #"https?://lanyrd.com/[0-9]{4}/.*/" url))))
 
+(defn lanyrd-url-meta [url]
+  (let [fragments (re-find #"https?://lanyrd.com/([0-9]{4})/(.*)/" url)]
+    {:url  url
+     :year (js/parseInt (nth fragments 1))
+     :id   (nth fragments 2)}))
+
 (defn embed-lanyrd [params]
   (if (is-lanyrd-url url)
     (do
