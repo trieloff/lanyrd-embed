@@ -5,6 +5,7 @@
             [httpurr.client :as http]
             [promesa.core :as p]
             [hiccups.runtime :as hiccupsrt]
+            [clojure.string :as s]
             [taoensso.timbre :as timbre
              :refer-macros [log  trace  debug  info  warn  error  fatal  report
                             logf tracef debugf infof warnf errorf fatalf reportf
@@ -25,7 +26,23 @@
   (let [{:keys [year id]} (lanyrd-url-meta url)]
     (str "http://lanyrd.com/" year "/" id "/" id ".ics")))
 
-(defn embed-lanyrd [{:keys [url]} params]
+(defn parse-ical [event]
+  (let [lines (s/split-lines event)
+        pairs (map #(s/split % #":" 2) lines)
+        mapped (reduce #(assoc %1
+                          (keyword (s/lower-case (s/replace-first (first %2) #";.*" "")))
+                          (s/replace (s/replace (last %2) #"\\n" "\n") #"\\," ",")) {} pairs)]
+    (debug "pairs" pairs)
+    (identity mapped)))
+
+(defn ical-data [url]
+  (debug "Getting ics for event" url)
+  (p/then (http/get client
+                    (lanyrd-ical-url url))
+          (fn [response]
+            (p/resolved (parse-ical (:body response))))))
+
+(defn embed-lanyrd [url]
   (if (is-lanyrd-url url)
     (do
       (debug "embedding" url))
@@ -48,7 +65,7 @@
                {:version "1.0"
                 :params  safe-params
                 :error   "You need to specify a URL to embed. Use the `url` parameter."})
-             (embed-lanyrd params))))
+             (embed-lanyrd (:url params)))))
 
 (defn clj-promise->js [o]
       (if (p/promise? o)

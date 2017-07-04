@@ -1,5 +1,6 @@
 (ns lanyrd-embed.test-core
-  (:require [cljs.test :refer-macros [deftest is testing run-tests]]
+  (:require [cljs.test :refer-macros [deftest is testing run-tests async]]
+            [promesa.core :as p]
             [lanyrd-embed.core :as c]))
 
 
@@ -19,6 +20,14 @@
 
 (deftest test-error
   (is (not (nil? (c/oembed-error "http://www.example.com")))))
+
+(deftest test-parse-ical
+  (async done
+    (-> (c/ical-data "http://lanyrd.com/2017/strange-loop/strange-loop.ics")
+        (p/then #((is (= (:summary %) "Strange Loop 2017"))
+                   (done)
+                   (identity %)))
+        (p/catch #()))))
 
 (enable-console-print!)
 (cljs.test/run-tests)
