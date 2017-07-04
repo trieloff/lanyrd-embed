@@ -1,0 +1,19 @@
+machine:
+  node:
+    version: 6.1.0
+dependencies:
+  pre:
+    - npm install --save-dev deploy-to-git
+compile:
+  override:
+  - lein cljsbuild once server-prod
+test:
+  override:
+  - lein doo node server-test once
+deployment:
+  production:
+    branch: dev
+    commands:
+      - rm -rf build
+      - npm run deploy
+

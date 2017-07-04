@@ -1,0 +1,13 @@
+package:
+  name: openwhisk-cljs
+  version: 1.0
+  license: Apache-2.0
+  actions:
+    embed:
+      version: 1.0
+      location: main.js
+      runtime: nodejs@6
+      inputs:
+        loggly:
+          type: String
+          description: Loggly API Key

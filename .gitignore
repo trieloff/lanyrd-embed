@@ -1,0 +1,12 @@
+/node_modules
+/target
+.DS_Store
+/figwheel_server.log
+/out
+/.idea
+/openwhisk-cljs.iml
+/pom.xml
+/main.js
+build
+/tests.js
+*.iml
