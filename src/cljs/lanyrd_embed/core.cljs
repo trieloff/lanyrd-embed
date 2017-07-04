@@ -43,20 +43,36 @@
       (p/catch #(error % "Error retrieving ICS file"))))
 
 (defn decode-body
-  [response]
-  (js->clj (js/JSON.parse (:body response)) :keywordize-keys false))
+  [response keywordize]
+  (js->clj (js/JSON.parse (:body response)) :keywordize-keys keywordize))
 
 (defn decode-json-rdf-body [response]
-  (debug (decode-body response))
+  (debug (decode-body response false))
   (apply merge (map (fn [[key val] pair] {(keyword (s/replace (s/replace key #".*#" "") #".*/" ""))
                                           (get (first val) "value")})
-        (val (first (decode-body response))))))
+        (val (first (decode-body response false))))))
 
 (defn schema-data [url]
   (debug "Getting schema for event" url)
   (-> (http/get client "http://getschema.org/microdataextractor" {:query-params {:url url :out "json"}})
       (p/then decode-json-rdf-body)
       (p/catch #(error % "Error retrieving microdata"))))
+
+(defn decode-address [response]
+  (debug (decode-body response true))
+  (-> (decode-body response true)
+      :resourceSets
+      first
+      :resources
+      first
+      :address))
+
+(defn location-data [lat lon key]
+  (debug "Getting location data for " lat lon)
+  (-> (http/get client (str "http://dev.virtualearth.net/REST/v1/Locations/" lat "," lon)
+                {:query-params {:key key :o "json" :includeEntityTypes "PopulatedPlace"}})
+      (p/then decode-address)
+      (p/catch #(error % "Error retrieving location"))))
 
 (defn embed-lanyrd [url]
   (if (is-lanyrd-url url)

@@ -1,8 +1,14 @@
 (ns lanyrd-embed.test-core
   (:require [cljs.test :refer-macros [deftest is testing run-tests async]]
             [promesa.core :as p]
+            [cljs.nodejs :as node]
             [lanyrd-embed.core :as c]))
 
+(defn env
+  "Returns the value of the environment variable k,
+   or raises if k is missing from the environment."
+  [k]
+  (aget (.-env node/process) k))
 
 (deftest test-urls
   (is (c/is-lanyrd-url "http://lanyrd.com/2017/smashingconf-freiburg/"))
@@ -33,6 +39,15 @@
   (async done
     (-> (c/schema-data "http://lanyrd.com/2017/jeffconf/")
         (p/then #((is (= (:name %) "JeffConf"))
+                   (done)
+                   (identity %)))
+        (p/catch #()))))
+
+(deftest test-get-location
+  (is (< 0 (count (env "BING_MAPS_KEY"))) "BING_MAPS_KEY environment variable must be set. Get your key at https://www.bingmapsportal.com/")
+  (async done
+    (-> (c/location-data 47.9949575609 7.85275154418 (env "BING_MAPS_KEY"))
+        (p/then #((is (= (:locality %) "Freiburg"))
                    (done)
                    (identity %)))
         (p/catch #()))))
