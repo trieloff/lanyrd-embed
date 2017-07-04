@@ -138,18 +138,28 @@
          [:span {:class "location"} formattedAddress]]
         [:div {:class "description"} description]))
 
+(defn render-json [data]
+  (let [{:keys [description localty name startDate endDate url lat lon formattedAddress dtstart dtend]} data]
+    {:version "1.0"
+     :type "rich"
+     :title name
+     :url url
+     :provider_name "Lanyrd"
+     :provider_url "http://lanyrd.com/"
+     :html (render-html data)}))
+
 (defn oembed-error [url]
   (error "Invalid Lanyrd event" url)
   {:error (str url " " "is not a valid Lanyrd event")})
 
 (defn embed-lanyrd [url key]
   (if (is-lanyrd-url url)
-    (do
-      (debug "embedding" url))
+    (p/map #(render-json %)
+           (collect-data url key))
     (oembed-error url)))
 
 (defn main [params]
-      (let [safe-params (dissoc params :key :loggly)]
+      (let [safe-params (dissoc params :key)]
            (timbre/merge-config! {:level :debug})
            (debug params "Logger activated.")
            (if (not (nil? (:loggly params)))

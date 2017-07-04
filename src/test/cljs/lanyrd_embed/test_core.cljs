@@ -96,5 +96,29 @@
     (println rendered)
     (is (< 0 (count rendered)))))
 
+(deftest test-json
+  (let [data {:description "Example conference for testing"
+              :localty "Testsville"
+              :name "TestConf"
+              :startDate "July 4th, 2017"
+              :endDate "July 7th, 2017"
+              :url "http://www.testconf.com"
+              :lat 0.12
+              :lon 3.14159
+              :formattedAddress "Testsville, TA, United States"
+              :dtstart "00000000"
+              :dtend "00000000"}
+        rendered (c/render-json data)]
+    (println rendered)
+    (is (= "Lanyrd" (:provider_name rendered)))))
+
+(deftest test-main
+  (is (< 0 (count (env "BING_MAPS_KEY"))) "BING_MAPS_KEY environment variable must be set. Get your key at https://www.bingmapsportal.com/")
+  (async done
+    (-> (c/main {:url "http://lanyrd.com/2017/monktoberfest/" :key (env "BING_MAPS_KEY")})
+        (p/then #((is (= "http://lanyrd.com/2017/monktoberfest/" (:url %)))
+                  (is (= "The Monktoberfest" (:title %)))))
+        (p/catch #()))))
+
 (enable-console-print!)
 (cljs.test/run-tests)
