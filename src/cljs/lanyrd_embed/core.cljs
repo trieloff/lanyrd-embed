@@ -69,6 +69,13 @@
     (debug "Decoded" decoded)
     (p/promise decoded)))
 
+(defn location-data
+  ([lat lon key]
+   (debug "Getting location data for " lat lon)
+   (-> (http/get client (str "http://dev.virtualearth.net/REST/v1/Locations/" lat "," lon)
+                 {:query-params {:key key :o "json" :includeEntityTypes "PopulatedPlace"}})
+       (p/then decode-address))))
+
 (defn get-loc-meta [key ical-loc]
   (println ical-loc)
   (p/map
@@ -84,14 +91,6 @@
   (p/chain (ical-data url)
            expand-loc
            (partial get-loc-meta key)))
-
-
-(defn location-data
-  ([lat lon key]
-  (debug "Getting location data for " lat lon)
-  (-> (http/get client (str "http://dev.virtualearth.net/REST/v1/Locations/" lat "," lon)
-                {:query-params {:key key :o "json" :includeEntityTypes "PopulatedPlace"}})
-      (p/then decode-address))))
 
 (defn embed-lanyrd [url]
   (if (is-lanyrd-url url)
