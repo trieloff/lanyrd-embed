@@ -92,21 +92,61 @@
            expand-loc
            (partial get-loc-meta key)))
 
-(defn embed-lanyrd [url]
-  (if (is-lanyrd-url url)
-    (do
-      (debug "embedding" url))
-    (oembed-error url)))
-
 (defn collect-data [url key]
   (p/map
     (partial apply merge)
     (p/all [(time-and-loc url key)
            (schema-data url)])))
 
+;;(:description
+;; :locality
+;; :countryRegion
+;; :adminDistrict2
+;; :method
+;; :uid
+;; :name
+;; :adminDistrict
+;; :geo
+;; :startDate
+;; :type
+;; :summary
+;; :begin
+;; :endDate
+;; :dtend
+;; :lon
+;; :x-ms-olk-forceinspectoropen
+;; :url
+;; :x-wr-calname
+;; :lat
+;; :dtstart
+;; :formattedAddress
+;; :prodid
+;; :x-original-url
+;; :end
+;; :version
+;; :location)
+
+(defn to-datetime [tstamp]
+  (s/join "-" (rest (re-find #"([0-9]{4})([0-9]{2})([0-9]{2})" tstamp))))
+
+(defn render-html [{:keys [description localty name startDate endDate url lat lon formattedAddress dtstart dtend]}]
+  (debug description localty name startDate endDate url lat lon formattedAddress dtstart dtend)
+  (html [:a {:class "url", :href url}
+         [:time {:datetime (to-datetime dtstart), :class "dtstart"} startDate]", "
+         [:time {:datetime (to-datetime dtend), :class "dtend"} " " endDate]
+         [:span {:class "summary"} name]" in "
+         [:span {:class "location"} formattedAddress]]
+        [:div {:class "description"} description]))
+
 (defn oembed-error [url]
   (error "Invalid Lanyrd event" url)
   {:error (str url " " "is not a valid Lanyrd event")})
+
+(defn embed-lanyrd [url key]
+  (if (is-lanyrd-url url)
+    (do
+      (debug "embedding" url))
+    (oembed-error url)))
 
 (defn main [params]
       (let [safe-params (dissoc params :key :loggly)]
@@ -121,7 +161,7 @@
                {:version "1.0"
                 :params  safe-params
                 :error   "You need to specify a URL to embed. Use the `url` parameter."})
-             (embed-lanyrd (:url params)))))
+             (embed-lanyrd (:url params) (:key params)))))
 
 (defn clj-promise->js [o]
       (if (p/promise? o)

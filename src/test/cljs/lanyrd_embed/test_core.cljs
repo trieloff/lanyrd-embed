@@ -72,9 +72,29 @@
                      #((is (= (:locality %) "St Louis"))
                         (is (= (:summary %) "Strange Loop 2017"))
                         (is (= (:startDate %) "Sept. 28, 2017"))
+                        (println (keys %))
                         (done)
                         (identity %)))
              #())))
+
+(deftest test-timestamp
+  (is (= "2017-07-28" (c/to-datetime "20170728"))))
+
+(deftest test-render
+  (let [data {:description "Example conference for testing"
+              :localty "Testsville"
+              :name "TestConf"
+              :startDate "July 4th, 2017"
+              :endDate "July 7th, 2017"
+              :url "http://www.testconf.com"
+              :lat 0.12
+              :lon 3.14159
+              :formattedAddress "Testsville, TA, United States"
+              :dtstart "00000000"
+              :dtend "00000000"}
+        rendered (c/render-html data)]
+    (println rendered)
+    (is (< 0 (count rendered)))))
 
 (enable-console-print!)
 (cljs.test/run-tests)
