@@ -129,8 +129,8 @@
 (defn to-datetime [tstamp]
   (s/join "-" (rest (re-find #"([0-9]{4})([0-9]{2})([0-9]{2})" tstamp))))
 
-(defn render-html [{:keys [description localty name startDate endDate url lat lon formattedAddress dtstart dtend]}]
-  (debug description localty name startDate endDate url lat lon formattedAddress dtstart dtend)
+(defn render-html [{:keys [description locality name startDate endDate url lat lon formattedAddress dtstart dtend]}]
+  (debug description locality name startDate endDate url lat lon formattedAddress dtstart dtend)
   (html [:a {:class "url", :href url}
          [:time {:datetime (to-datetime dtstart), :class "dtstart"} startDate]", "
          [:time {:datetime (to-datetime dtend), :class "dtend"} " " endDate]
@@ -139,7 +139,7 @@
         [:div {:class "description"} description]))
 
 (defn render-json [data]
-  (let [{:keys [description localty name startDate endDate url lat lon formattedAddress dtstart dtend]} data]
+  (let [{:keys [description locality name startDate endDate url lat lon formattedAddress dtstart dtend]} data]
     {:version "1.0"
      :type "rich"
      :title name

@@ -117,7 +117,8 @@
   (async done
     (-> (c/main {:url "http://lanyrd.com/2017/monktoberfest/" :key (env "BING_MAPS_KEY")})
         (p/then #((is (= "http://lanyrd.com/2017/monktoberfest/" (:url %)))
-                  (is (= "The Monktoberfest" (:title %)))))
+                  (is (= "The Monktoberfest" (:title %)))
+                   (done)))
         (p/catch #()))))
 
 (enable-console-print!)
