@@ -21,7 +21,11 @@
      :year (js/parseInt (nth fragments 1))
      :id   (nth fragments 2)}))
 
-(defn embed-lanyrd [params]
+(defn lanyrd-ical-url [url]
+  (let [{:keys [year id]} (lanyrd-url-meta url)]
+    (str "http://lanyrd.com/" year "/" id "/" id ".ics")))
+
+(defn embed-lanyrd [{:keys [url]} params]
   (if (is-lanyrd-url url)
     (do
       (debug "embedding" url))
