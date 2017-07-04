@@ -25,5 +25,6 @@
               :compiler {:main lanyrd-embed.test-core
                          :output-to "tests.js"
                          :hashbang false
+                         :npm-deps {:htmlparser "1.7.7"}
                          :optimizations :simple ;; notice this!
                          :target :nodejs }}]})

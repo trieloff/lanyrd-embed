@@ -2,6 +2,8 @@
   (:require [cljs.test :refer-macros [deftest is testing run-tests]]
             [lanyrd-embed.core :as c]))
 
+(def htmlparser (js/require "htmlparser"))
+
 
 (deftest test-urls
   (is (c/is-lanyrd-url "http://lanyrd.com/2017/smashingconf-freiburg/"))
@@ -19,3 +21,6 @@
 
 (enable-console-print!)
 (cljs.test/run-tests)
+
+
+(println (.DefaultHandler htmlparser (fn [error dom] (println dom))))
