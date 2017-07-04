@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "deploy": "deploy-to-git",
+    "build-my-app": "lein cljsbuild once server-prod && cp main.js manifest.yaml build"
+  },
+  "config": {
+    "deployToGit": {
+      "repository": "git@github.com:trieloff/stackoverflow-embed.git",
+      "branch": "master",
+      "folder": "build",
+      "script": "npm run build-my-app",
+      "commit": "[ci skip] deploy build #$CIRCLE_BUILD_NUM to Adobe I/O Runtime",
+      "user": {
+        "email": "lars@trieloff.net",
+        "name": "Lars Trieloff"
+      }
+    }
+  },
+  "devDependencies": {
+    "deploy-to-git": "^0.1.4"
+  }
+}
