@@ -41651,32 +41651,32 @@ lanyrd_embed.core.parse_ical = function(a) {
       return cljs.core.assoc.call(null, a, cljs.core.keyword.call(null, clojure.string.lower_case.call(null, clojure.string.replace_first.call(null, cljs.core.first.call(null, b), /;.*/, ""))), clojure.string.replace.call(null, clojure.string.replace.call(null, cljs.core.last.call(null, b), /\\n/, "\n"), /\\,/, ","));
     };
   }(a, b), cljs.core.PersistentArrayMap.EMPTY, b);
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 35, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 35, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c) {
     return function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["pairs", b], null);
     };
-  }(a, b, c), null), null, 81960330);
+  }(a, b, c), null), null, 966890146);
   return cljs.core.identity.call(null, c);
 };
 lanyrd_embed.core.ical_data = function(a) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 39, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 39, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Getting ics for event", a], null);
-  }, null), null, -2121186447);
+  }, null), null, -1559595942);
   return promesa.core.catch$.call(null, promesa.core.then.call(null, httpurr.client.get.call(null, httpurr.client.node.client, lanyrd_embed.core.lanyrd_ical_url.call(null, a)), function(a) {
     return promesa.core.resolved.call(null, lanyrd_embed.core.parse_ical.call(null, (new cljs.core.Keyword(null, "body", "body", -2049205669)).cljs$core$IFn$_invoke$arity$1(a)));
   }), function(a) {
-    return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 43, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+    return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 43, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "Error retrieving ICS file"], null);
-    }, null), null, 671433856);
+    }, null), null, 1355121451);
   });
 };
 lanyrd_embed.core.decode_body = function(a, b) {
   return cljs.core.js__GT_clj.call(null, JSON.parse((new cljs.core.Keyword(null, "body", "body", -2049205669)).cljs$core$IFn$_invoke$arity$1(a)), new cljs.core.Keyword(null, "keywordize-keys", "keywordize-keys", 1310784252), b);
 };
 lanyrd_embed.core.decode_json_rdf_body = function(a) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 50, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 50, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [lanyrd_embed.core.decode_body.call(null, a, !1)], null);
-  }, null), null, -1605350397);
+  }, null), null, -1974725748);
   return cljs.core.apply.call(null, cljs.core.merge, cljs.core.map.call(null, function(a, c) {
     c = cljs.core.nth.call(null, a, 0, null);
     a = cljs.core.nth.call(null, a, 1, null);
@@ -41684,32 +41684,32 @@ lanyrd_embed.core.decode_json_rdf_body = function(a) {
   }, cljs.core.val.call(null, cljs.core.first.call(null, lanyrd_embed.core.decode_body.call(null, a, !1)))));
 };
 lanyrd_embed.core.schema_data = function(a) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 56, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 56, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Getting schema for event", a], null);
-  }, null), null, 790259226);
+  }, null), null, 1711292508);
   return promesa.core.catch$.call(null, promesa.core.then.call(null, httpurr.client.get.call(null, httpurr.client.node.client, "http://getschema.org/microdataextractor", new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "query-params", "query-params", 900640534), new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "url", "url", 276297046), a, new cljs.core.Keyword(null, "out", "out", -910545517), "json"], null)], null)), lanyrd_embed.core.decode_json_rdf_body), 
   function(a) {
-    return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 59, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+    return taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 59, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "Error retrieving microdata"], null);
-    }, null), null, -909609862);
+    }, null), null, -821282811);
   });
 };
 lanyrd_embed.core.decode_address = function(a) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 62, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "trace", "trace", -1082747415), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 62, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Decoding address", a], null);
-  }, null), null, -1212144789);
+  }, null), null, 775111579);
   var b = (new cljs.core.Keyword(null, "address", "address", 559499426)).cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null, (new cljs.core.Keyword(null, "resources", "resources", 1632806811)).cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null, (new cljs.core.Keyword(null, "resourceSets", "resourceSets", -845478959)).cljs$core$IFn$_invoke$arity$1(lanyrd_embed.core.decode_body.call(null, a, !0))))));
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 69, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 69, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a) {
     return function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Decoded", a], null);
     };
-  }(b), null), null, 1859571086);
+  }(b), null), null, 846617022);
   return promesa.core.promise.call(null, b);
 };
 lanyrd_embed.core.location_data = function(a, b, c) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 74, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 74, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Getting location data for ", a, b], null);
-  }, null), null, -1924685550);
+  }, null), null, -1298452107);
   return promesa.core.then.call(null, httpurr.client.get.call(null, httpurr.client.node.client, [cljs.core.str.cljs$core$IFn$_invoke$arity$1("http://dev.virtualearth.net/REST/v1/Locations/"), cljs.core.str.cljs$core$IFn$_invoke$arity$1(a), cljs.core.str.cljs$core$IFn$_invoke$arity$1(","), cljs.core.str.cljs$core$IFn$_invoke$arity$1(b)].join(""), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "query-params", "query-params", 900640534), new cljs.core.PersistentArrayMap(null, 
   3, [new cljs.core.Keyword(null, "key", "key", -1516042587), c, new cljs.core.Keyword(null, "o", "o", -1350007228), "json", new cljs.core.Keyword(null, "includeEntityTypes", "includeEntityTypes", 1647975858), "PopulatedPlace"], null)], null)), lanyrd_embed.core.decode_address);
 };
@@ -41733,11 +41733,11 @@ lanyrd_embed.core.render_html = function(a) {
   var b = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, c = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "description", "description", -1428560544)), d = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "locality", "locality", 842809377)), e = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "name", "name", 1843675177)), f = cljs.core.get.call(null, b, 
   new cljs.core.Keyword(null, "startDate", "startDate", -1106307029)), g = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "endDate", "endDate", -305467631)), h = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "dtend", "dtend", -94004012)), k = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "lon", "lon", 522068437)), l = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "url", "url", 276297046)), m = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "dtstart", 
   "dtstart", -1078212137)), n = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "formattedAddress", "formattedAddress", -773778569)), p = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "lat", "lat", -580793929));
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 133, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 133, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a, b, c, d, e, f, g, h, k, l, m, n, p) {
     return function() {
       return new cljs.core.PersistentVector(null, 11, 5, cljs.core.PersistentVector.EMPTY_NODE, [c, d, e, f, g, l, p, k, n, m, h], null);
     };
-  }(a, b, c, d, e, f, g, h, k, l, m, n, p), null), null, -1307856921);
+  }(a, b, c, d, e, f, g, h, k, l, m, n, p), null), null, -729048641);
   return [cljs.core.str.cljs$core$IFn$_invoke$arity$1("\x3ca"), cljs.core.str.cljs$core$IFn$_invoke$arity$1(hiccups.runtime.render_attr_map.call(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "id", "id", -1388402092), null, new cljs.core.Keyword(null, "class", "class", -2030961996), "url", new cljs.core.Keyword(null, "href", "href", -793805698), l], null))), cljs.core.str.cljs$core$IFn$_invoke$arity$1("\x3e"), cljs.core.str.cljs$core$IFn$_invoke$arity$1("\x3ctime"), 
   cljs.core.str.cljs$core$IFn$_invoke$arity$1(hiccups.runtime.render_attr_map.call(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "id", "id", -1388402092), null, new cljs.core.Keyword(null, "class", "class", -2030961996), "dtstart", new cljs.core.Keyword(null, "datetime", "datetime", 494675702), lanyrd_embed.core.to_datetime.call(null, m)], null))), cljs.core.str.cljs$core$IFn$_invoke$arity$1("\x3e"), cljs.core.str.cljs$core$IFn$_invoke$arity$1(hiccups.runtime.render_html.call(null, 
   f)), cljs.core.str.cljs$core$IFn$_invoke$arity$1("\x3c/time\x3e"), cljs.core.str.cljs$core$IFn$_invoke$arity$1(", "), cljs.core.str.cljs$core$IFn$_invoke$arity$1("\x3ctime"), cljs.core.str.cljs$core$IFn$_invoke$arity$1(hiccups.runtime.render_attr_map.call(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "id", "id", -1388402092), null, new cljs.core.Keyword(null, "class", "class", -2030961996), "dtend", new cljs.core.Keyword(null, "datetime", "datetime", 494675702), lanyrd_embed.core.to_datetime.call(null, 
@@ -41762,9 +41762,9 @@ lanyrd_embed.core.render_json = function(a) {
   "html", "html", -998796897), lanyrd_embed.core.render_html.call(null, a)], null);
 };
 lanyrd_embed.core.oembed_error = function(a) {
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 152, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "error", "error", -978969032), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 152, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function() {
     return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Invalid Lanyrd event", a], null);
-  }, null), null, -2087684899);
+  }, null), null, 235373110);
   return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "error", "error", -978969032), [cljs.core.str.cljs$core$IFn$_invoke$arity$1(a), cljs.core.str.cljs$core$IFn$_invoke$arity$1(" "), cljs.core.str.cljs$core$IFn$_invoke$arity$1("is not a valid Lanyrd event")].join("")], null);
 };
 lanyrd_embed.core.embed_lanyrd = function(a, b) {
@@ -41775,18 +41775,18 @@ lanyrd_embed.core.embed_lanyrd = function(a, b) {
 lanyrd_embed.core.main = function(a) {
   var b = cljs.core.dissoc.call(null, a, new cljs.core.Keyword(null, "key", "key", -1516042587));
   taoensso.timbre.merge_config_BANG_.call(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "level", "level", 1290497552), new cljs.core.Keyword(null, "debug", "debug", -1608172596)], null));
-  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 164, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(b) {
+  taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "debug", "debug", -1608172596), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 164, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(b) {
     return function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "Logger activated."], null);
     };
-  }(b), null), null, 607833816);
+  }(b), null), null, -156535985);
   null != (new cljs.core.Keyword(null, "loggly", "loggly", 1096477133)).cljs$core$IFn$_invoke$arity$1(a) && taoensso.timbre.merge_config_BANG_.call(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "appenders", "appenders", 1245583998), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "loggly", "loggly", 1096477133), lanyrd_embed.loggly.loggly_appender.call(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "tags", "tags", 
   1771418977), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "oembed", "oembed", 2091783668), new cljs.core.Keyword(null, "lanyrd", "lanyrd", 108593858), new cljs.core.Keyword(null, "timbre", "timbre", -309810402)], null), new cljs.core.Keyword(null, "token", "token", -1211463215), (new cljs.core.Keyword(null, "loggly", "loggly", 1096477133)).cljs$core$IFn$_invoke$arity$1(a)], null))], null)], null));
-  return null == (new cljs.core.Keyword(null, "url", "url", 276297046)).cljs$core$IFn$_invoke$arity$1(a) ? (taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "lanyrd-embed.core", "/tmp/form-init2895090242911277324.clj", 170, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a) {
+  return null == (new cljs.core.Keyword(null, "url", "url", 276297046)).cljs$core$IFn$_invoke$arity$1(a) ? (taoensso.timbre._log_BANG_.call(null, taoensso.timbre._STAR_config_STAR_, new cljs.core.Keyword(null, "warn", "warn", -436710552), "lanyrd-embed.core", "/tmp/form-init6985057369661389169.clj", 170, new cljs.core.Keyword(null, "p", "p", 151049309), new cljs.core.Keyword(null, "auto", "auto", -566279492), new cljs.core.Delay(function(a) {
     return function() {
       return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, "No URL provided"], null);
     };
-  }(b), null), null, 1357335590), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "version", "version", 425292698), "1.0", new cljs.core.Keyword(null, "params", "params", 710516235), b, new cljs.core.Keyword(null, "error", "error", -978969032), "You need to specify a URL to embed. Use the `url` parameter."], null)) : lanyrd_embed.core.embed_lanyrd.call(null, (new cljs.core.Keyword(null, "url", "url", 276297046)).cljs$core$IFn$_invoke$arity$1(a), (new cljs.core.Keyword(null, 
+  }(b), null), null, 736907136), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "version", "version", 425292698), "1.0", new cljs.core.Keyword(null, "params", "params", 710516235), b, new cljs.core.Keyword(null, "error", "error", -978969032), "You need to specify a URL to embed. Use the `url` parameter."], null)) : lanyrd_embed.core.embed_lanyrd.call(null, (new cljs.core.Keyword(null, "url", "url", 276297046)).cljs$core$IFn$_invoke$arity$1(a), (new cljs.core.Keyword(null, 
   "key", "key", -1516042587)).cljs$core$IFn$_invoke$arity$1(a));
 };
 lanyrd_embed.core.clj_promise__GT_js = function(a) {
