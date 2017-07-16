@@ -7,7 +7,7 @@
             [promesa.core :as p]
             [hiccups.runtime :as hiccupsrt]
             [clojure.string :as s]
-            [lanyrd-embed.openwhisk :as o]
+            [openwhisk.wrap :as o]
             [taoensso.timbre :as timbre
              :refer-macros [log  trace  debug  info  warn  error  fatal  report
                             logf tracef debugf infof warnf errorf fatalf reportf
