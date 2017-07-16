@@ -8,9 +8,11 @@
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-doo "0.1.7"]]
   :clean-targets ^{:protect false} ["target", "main.js"]
+  :hooks [leiningen.cljsbuild]
   :cljsbuild {
     :builds [{:id "server-prod"
               :source-paths ["src/cljs"]
+              :jar true
               :compiler {:main lanyrd-embed.core
                          :output-to "main.js"
                          :language-in  :ecmascript5

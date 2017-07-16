@@ -1,11 +1,13 @@
 (ns lanyrd-embed.core
-  (:require-macros [hiccups.core :as hiccups :refer [html]])
+  (:require-macros
+    [hiccups.core :as hiccups :refer [html]])
   (:require [cljs.core :as core]
             [cljs.nodejs :as nodejs]
             [httpurr.client :as http]
             [promesa.core :as p]
             [hiccups.runtime :as hiccupsrt]
             [clojure.string :as s]
+            [lanyrd-embed.openwhisk :as o]
             [taoensso.timbre :as timbre
              :refer-macros [log  trace  debug  info  warn  error  fatal  report
                             logf tracef debugf infof warnf errorf fatalf reportf
@@ -173,9 +175,4 @@
                 :error   "You need to specify a URL to embed. Use the `url` parameter."})
              (embed-lanyrd (:url params) (:key params)))))
 
-(defn clj-promise->js [o]
-      (if (p/promise? o)
-        (p/then o (fn [r] (p/resolved (clj->js r))))
-        (clj->js o)))
-
-(set! js/main (fn [args] (clj-promise->js (main (js->clj args :keywordize-keys true)))))
+(o/wrapfn main)
