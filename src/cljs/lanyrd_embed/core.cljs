@@ -10,7 +10,7 @@
              :refer-macros [log  trace  debug  info  warn  error  fatal  report
                             logf tracef debugf infof warnf errorf fatalf reportf
                             spy get-env]]
-            [lanyrd-embed.loggly :as loggly]
+            [timbre.loggly :as loggly]
             [httpurr.client.node :refer [client]]))
 
 (defn is-lanyrd-url [url]
