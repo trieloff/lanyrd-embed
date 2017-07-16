@@ -5,7 +5,7 @@
   },
   "config": {
     "deployToGit": {
-      "repository": "git@github.com:trieloff/stackoverflow-embed.git",
+      "repository": "git@github.com:trieloff/lanyrd-embed.git",
       "branch": "master",
       "folder": "build",
       "script": "npm run build-my-app",
